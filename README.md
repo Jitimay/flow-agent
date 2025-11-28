@@ -26,7 +26,7 @@ cd /home/josh/Kiro/FlowAgent
 ```
 
 ### 2. Access Interfaces
-- **Web Interface**: http://localhost:8002/majisafe_modern_ui.html
+- **Web Interface**: http://localhost:8002/flowagent_modern_ui.html
 - **MCP Server**: http://localhost:5003/mcp
 - **AI Bridge**: http://localhost:5002/status
 

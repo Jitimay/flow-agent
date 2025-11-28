@@ -1,9 +1,9 @@
-# MajiSafe Quick Start
+# FlowAgent Quick Start
 
 ## 🚀 One Command Launch
 
 ```bash
-cd /home/josh/Kiro/MajiSafe
+cd /home/josh/Kiro/FlowAgent
 ./start.sh
 ```
 

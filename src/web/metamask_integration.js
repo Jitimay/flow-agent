@@ -1,4 +1,4 @@
-// MajiSafe MetaMask Integration - Multi-chain Support
+// FlowAgent MetaMask Integration - Multi-chain Support
 
 const MOONBASE_ALPHA_CONFIG = {
     chainId: '0x507', // 1287 Moonbase Alpha
@@ -16,16 +16,16 @@ const NEUROWEB_CONFIG = {
     blockExplorerUrls: ['https://neuroweb.subscan.io']
 };
 
-const MAJISAFE_CONTRACT_ADDRESS = "0x4933781A5DDC86bdF9c9C9795647e763E0429E28";
+const FLOWSAFE_CONTRACT_ADDRESS = "0x4933781A5DDC86bdF9c9C9795647e763E0429E28";
 
-const MAJISAFE_ABI = [
+const FLOWSAFE_ABI = [
     "function buyWater(bytes32 pumpId) payable",
     "function waterCredits(address) view returns (uint256)",
     "function creditPrice() view returns (uint256)",
     "event WaterPurchased(address indexed user, uint256 credits, bytes32 pumpId)"
 ];
 
-class MajiSafeMetaMask {
+class FlowAgentMetaMask {
     constructor() {
         this.provider = null;
         this.signer = null;
@@ -75,8 +75,8 @@ class MajiSafeMetaMask {
 
             // Initialize contract
             this.contract = new ethers.Contract(
-                MAJISAFE_CONTRACT_ADDRESS,
-                MAJISAFE_ABI,
+                FLOWSAFE_CONTRACT_ADDRESS,
+                FLOWSAFE_ABI,
                 this.signer
             );
 
@@ -182,4 +182,4 @@ class MajiSafeMetaMask {
 }
 
 // Global instance
-const majiSafeWallet = new MajiSafeMetaMask();
+const majiSafeWallet = new FlowAgentMetaMask();

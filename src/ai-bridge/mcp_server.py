@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""MCP Server for MajiSafe Water Management"""
+"""MCP Server for FlowAgent Water Management"""
 
 from mcp.server import Server
 from mcp.types import Tool, TextContent
 import json
 
-server = Server("majisafe-water")
+server = Server("flowagent-water")
 
 @server.list_tools()
 async def list_tools():

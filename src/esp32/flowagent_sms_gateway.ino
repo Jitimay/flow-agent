@@ -19,7 +19,7 @@ HardwareSerial SerialAT(1);
 const char* ssid = "Josh";
 const char* password = "Jitimay$$";
 
-// --- MajiSafe AI Bridge URL ---
+// --- FlowAgent AI Bridge URL ---
 const char* aiBridgeURL = "http://192.168.155.181:5001/process-sms";
 
 bool pumpActive = false;
@@ -64,7 +64,7 @@ void connectWiFi() {
   }
 }
 
-// --- Process Payment SMS with MajiSafe AI ---
+// --- Process Payment SMS with FlowAgent AI ---
 String processPayment(String smsContent, String sender) {
   if (WiFi.status() != WL_CONNECTED) {
     Serial.println("❌ WiFi disconnected");
@@ -76,7 +76,7 @@ String processPayment(String smsContent, String sender) {
   http.addHeader("Content-Type", "application/json");
   http.setTimeout(30000);
 
-  // Create JSON payload for MajiSafe AI
+  // Create JSON payload for FlowAgent AI
   String jsonData = "{\"phone\":\"" + sender + "\",\"message\":\"" + smsContent + "\"}";
   Serial.println("📡 Sending to AI: " + jsonData);
 
@@ -175,7 +175,7 @@ void sendSMS(String number, String message) {
 // --- Setup ---
 void setup() {
   Serial.begin(115200);
-  Serial.println("\n🚰 MajiSafe SMS Payment Gateway Starting...");
+  Serial.println("\n🚰 FlowAgent SMS Payment Gateway Starting...");
   delay(1000);
 
   powerOnModem();
@@ -196,7 +196,7 @@ void setup() {
   
   connectWiFi();
   
-  Serial.println("\n🚰 MajiSafe Ready!");
+  Serial.println("\n🚰 FlowAgent Ready!");
   Serial.println("📱 Send: PAY 5000 BIF PUMP001");
   Serial.println("💧 Phone: +25766303339");
 }

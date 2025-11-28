@@ -2,7 +2,7 @@ import { ethers } from "hardhat";
 
 async function safeDeploy() {
   try {
-    console.log("🚰 MajiSafe Safe Deployment Starting...");
+    console.log("🚰 FlowAgent Safe Deployment Starting...");
     
     // Pre-deployment checks
     const [deployer] = await ethers.getSigners();

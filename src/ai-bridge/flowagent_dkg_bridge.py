@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-MajiSafe DKG Bridge - Enhanced AI Agent with OriginTrail Integration
+FlowAgent DKG Bridge - Enhanced AI Agent with OriginTrail Integration
 Processes SMS payments and creates verifiable Knowledge Assets
 """
 
@@ -16,20 +16,20 @@ from dkg_agent_simple import MCPToolsAgent
 app = Flask(__name__)
 CORS(app)
 
-class MajiSafeDKGBridge:
+class FlowAgentDKGBridge:
     def __init__(self):
         self.dkg_agent = RealDKGAgent()
         self.mcp_tools = MCPToolsAgent()
         self.init_db()
         
-        print("🌊 MajiSafe DKG Bridge Ready")
+        print("🌊 FlowAgent DKG Bridge Ready")
         print("🔗 Real OriginTrail DKG Integration")
         print("🌙 Using NeuroWeb Network")
         print("🤖 MCP Tools Loaded")
     
     def init_db(self):
         """Initialize database with DKG tracking"""
-        self.conn = sqlite3.connect('majisafe_dkg.db', check_same_thread=False)
+        self.conn = sqlite3.connect('flowagent_dkg.db', check_same_thread=False)
         self.conn.execute('''
             CREATE TABLE IF NOT EXISTS water_events (
                 id INTEGER PRIMARY KEY,
@@ -133,7 +133,7 @@ class MajiSafeDKGBridge:
         self.conn.commit()
 
 # Global bridge instance
-bridge = MajiSafeDKGBridge()
+bridge = FlowAgentDKGBridge()
 
 @app.route('/process-sms', methods=['POST'])
 def process_sms():
@@ -201,7 +201,7 @@ def verify_asset(ual):
 def status():
     """Enhanced status with DKG connectivity"""
     return jsonify({
-        "service": "MajiSafe DKG Bridge",
+        "service": "FlowAgent DKG Bridge",
         "status": "online",
         "blockchain": "Moonbase Alpha",
         "dkg_node": bridge.dkg_agent.dkg_node_url,
@@ -210,7 +210,7 @@ def status():
     })
 
 if __name__ == "__main__":
-    print("🚀 Starting MajiSafe DKG Bridge...")
+    print("🚀 Starting FlowAgent DKG Bridge...")
     print("🌊 Creating verifiable water Knowledge Assets")
     print("🔗 OriginTrail DKG integration active")
     

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-MajiSafe AI Bridge - SMS Payment Processor
+FlowAgent AI Bridge - SMS Payment Processor
 Receives SMS payments from ESP32, validates, processes blockchain, activates pump
 """
 
@@ -16,7 +16,7 @@ from datetime import datetime
 
 app = Flask(__name__)
 
-class MajiSafeAI:
+class FlowAgentAI:
     def __init__(self):
         # Blockchain setup
         self.w3 = Web3(Web3.HTTPProvider('https://sepolia.base.org'))
@@ -34,7 +34,7 @@ class MajiSafeAI:
         }
         
         self.init_db()
-        print("🤖 MajiSafe AI Bridge Started")
+        print("🤖 FlowAgent AI Bridge Started")
         print("💧 Ready to process SMS payments from rural Africa")
     
     def init_db(self):
@@ -190,15 +190,15 @@ def get_status():
     """Get AI Bridge status"""
     return jsonify({
         'status': 'online',
-        'service': 'MajiSafe AI Bridge',
+        'service': 'FlowAgent AI Bridge',
         'blockchain': 'Base Sepolia',
         'contract': ai_bridge.contract_address
     })
 
 if __name__ == "__main__":
-    ai_bridge = MajiSafeAI()
+    ai_bridge = FlowAgentAI()
     
-    print("🚀 Starting MajiSafe AI Bridge Server...")
+    print("🚀 Starting FlowAgent AI Bridge Server...")
     print("📱 Listening for SMS payments from ESP32...")
     print("🔗 Connected to Base Sepolia blockchain")
     print("💧 Ready to activate water pumps!")

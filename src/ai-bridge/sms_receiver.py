@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-MajiSafe SMS Receiver - Real SMS Integration
+FlowAgent SMS Receiver - Real SMS Integration
 Monitors SMS messages to +25766303339 and processes payments
 """
 

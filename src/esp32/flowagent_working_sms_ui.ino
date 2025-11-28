@@ -1,5 +1,5 @@
 /*
- * MajiSafe ESP32 - Working SMS + UI Sync
+ * FlowAgent ESP32 - Working SMS + UI Sync
  * Based on your working SMS code with UI communication
  */
 
@@ -23,7 +23,7 @@ WebServer server(80);
 const char* ssid = "Josh";
 const char* password = "Jitimay$$";
 
-// MajiSafe configuration
+// FlowAgent configuration
 String pumpId = "PUMP001";
 
 // Global variables
@@ -59,7 +59,7 @@ void setup() {
   initWiFi();
   initWebServer();
   
-  Serial.println("🌊 MajiSafe SMS → UI → Web3 → Pump System Ready");
+  Serial.println("🌊 FlowAgent SMS → UI → Web3 → Pump System Ready");
   Serial.println("📱 Waiting for SMS to enable UI button...");
 }
 

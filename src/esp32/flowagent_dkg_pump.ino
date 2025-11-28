@@ -1,5 +1,5 @@
 /*
- * MajiSafe DKG Pump Controller
+ * FlowAgent DKG Pump Controller
  * Enhanced ESP32 firmware with OriginTrail DKG integration
  * Sends verifiable pump data to DKG Bridge
  */
@@ -54,7 +54,7 @@ void setup() {
   initWiFi();
   initGPS();
   
-  Serial.println("🌊 MajiSafe DKG Pump Controller Ready");
+  Serial.println("🌊 FlowAgent DKG Pump Controller Ready");
   Serial.println("🔗 OriginTrail DKG Integration Active");
 }
 

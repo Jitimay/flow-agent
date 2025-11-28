@@ -15,7 +15,7 @@ class SimpleTrigger:
         """Simple approach - open browser and wait"""
         try:
             print(f"📱 SMS Payment received: {message}")
-            print("🌐 Opening MajiSafe web interface...")
+            print("🌐 Opening FlowAgent web interface...")
             
             # Open the working web UI
             webbrowser.open("http://localhost:8000")

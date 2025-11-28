@@ -1,5 +1,5 @@
 /*
- * MajiSafe ESP32 - SMS Payment Receiver & Pump Controller
+ * FlowAgent ESP32 - SMS Payment Receiver & Pump Controller
  * Receives SMS payments from rural users, forwards to AI Bridge
  */
 
@@ -38,7 +38,7 @@ void setup() {
   initModem();
   initWiFi();
   
-  Serial.println("MajiSafe SMS Payment System Ready");
+  Serial.println("FlowAgent SMS Payment System Ready");
 }
 
 void loop() {

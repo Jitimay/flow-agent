@@ -1,5 +1,5 @@
 /*
- * MajiSafe ESP32 SMS Receiver
+ * FlowAgent ESP32 SMS Receiver
  * SIM card number: +25766303339
  * Receives SMS payments and forwards to AI Bridge
  */
@@ -34,7 +34,7 @@ void setup() {
   initModem();
   initWiFi();
   
-  Serial.println("📱 MajiSafe SMS Receiver Ready");
+  Serial.println("📱 FlowAgent SMS Receiver Ready");
   Serial.println("📞 Phone: +25766303339");
   Serial.println("💬 Send: PAY 5000 BIF PUMP001");
 }

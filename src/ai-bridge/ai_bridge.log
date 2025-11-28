@@ -1,0 +1,84 @@
+ * Tip: There are .env files present. Install python-dotenv to use them.
+🤖 MajiChain AI Bridge Ready
+💧 Processing REAL SMS payments for rural Africa
+🚀 Starting MajiChain AI Bridge...
+📱 Ready to process SMS payments
+💧 Converting crypto to clean water
+🌍 Serving rural Africa
+ * Serving Flask app 'majichain_ai'
+ * Debug mode: on
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.1.59:5001
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Tip: There are .env files present. Install python-dotenv to use them.
+ * Debugger is active!
+ * Debugger PIN: 276-112-366
+192.168.1.59 - - [24/Nov/2025 15:04:24] "POST /process-sms HTTP/1.1" 200 -
+ * Detected change in '/home/josh/Kiro/maji_chain/src/ai-bridge/majichain_ai.py', reloading
+🤖 MajiChain AI Bridge Ready
+💧 Processing REAL SMS payments for rural Africa
+🚀 Starting MajiChain AI Bridge...
+📱 Ready to process SMS payments
+💧 Converting crypto to clean water
+🌍 Serving rural Africa
+
+📱 SMS from +25769820499: PAY 5000 BIF PUMP001
+💰 Parsed: 5000.0 BIF = 0.0017350000000000002 ETH
+💰 Making REAL Web3 payment: 0.0017350000000000002 ETH
+🔑 Using account: 0xf72657fc9d1BBE6C8CF699A450603bd9e8B2A7cA
+🔗 Transaction built. Gas price: 1200000
+❌ Blockchain error: 'SignedTransaction' object has no attribute 'rawTransaction'
+ * Restarting with stat
+ * Tip: There are .env files present. Install python-dotenv to use them.
+ * Debugger is active!
+ * Debugger PIN: 276-112-366
+ * Detected change in '/home/josh/Kiro/maji_chain/src/ai-bridge/majichain_ai.py', reloading
+🤖 MajiChain AI Bridge Ready
+💧 Processing REAL SMS payments for rural Africa
+🚀 Starting MajiChain AI Bridge...
+📱 Ready to process SMS payments
+💧 Converting crypto to clean water
+🌍 Serving rural Africa
+ * Restarting with stat
+ * Tip: There are .env files present. Install python-dotenv to use them.
+ * Debugger is active!
+ * Debugger PIN: 276-112-366
+ * Detected change in '/home/josh/Kiro/maji_chain/src/ai-bridge/majichain_ai.py', reloading
+🤖 MajiChain AI Bridge Ready
+💧 Processing REAL SMS payments for rural Africa
+🚀 Starting MajiChain AI Bridge...
+📱 Ready to process SMS payments
+💧 Converting crypto to clean water
+🌍 Serving rural Africa
+ * Restarting with stat
+ * Tip: There are .env files present. Install python-dotenv to use them.
+ * Debugger is active!
+ * Debugger PIN: 276-112-366
+ * Detected change in '/home/josh/Kiro/maji_chain/src/ai-bridge/majichain_ai.py', reloading
+🤖 MajiChain AI Bridge Ready
+💧 Processing REAL SMS payments for rural Africa
+🚀 Starting MajiChain AI Bridge...
+📱 Ready to process SMS payments
+💧 Converting crypto to clean water
+🌍 Serving rural Africa
+ * Restarting with stat
+ * Tip: There are .env files present. Install python-dotenv to use them.
+ * Debugger is active!
+ * Debugger PIN: 276-112-366
+ * Detected change in '/home/josh/Kiro/maji_chain/src/ai-bridge/majichain_ai.py', reloading
+🤖 MajiChain AI Bridge Ready
+💧 Processing REAL SMS payments for rural Africa
+🚀 Starting MajiChain AI Bridge...
+📱 Ready to process SMS payments
+💧 Converting crypto to clean water
+🌍 Serving rural Africa
+ * Restarting with stat
+Traceback (most recent call last):
+  File "/home/josh/Kiro/maji_chain/src/ai-bridge/majichain_ai.py", line 15, in <module>
+    from metamask_automation import MetaMaskAutomation
+  File "/home/josh/Kiro/maji_chain/src/ai-bridge/metamask_automation.py", line 7, in <module>
+    from selenium import webdriver
+ModuleNotFoundError: No module named 'selenium'

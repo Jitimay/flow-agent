@@ -1,13 +1,10 @@
-// NeuroWeb Network Configuration (Required for hackathon)
-const NEUROWEB_CONFIG = {
-    chainId: '0x7E6', // 2014 NeuroWeb
-    chainName: 'NeuroWeb',
-    nativeCurrency: { name: 'NEURO', symbol: 'NEURO', decimals: 18 },
-    rpcUrls: ['https://astrosat.origintrail.network'],
-    blockExplorerUrls: ['https://neuroweb.subscan.io']
+// FlowAgent Water Management Configuration
+const FLOWAGENT_CONFIG = {
+    network: 'base-sepolia',
+    rpc: 'https://sepolia.base.org',
+    contract: '0x4933781A5DDC86bdF9c9C9795647e763E0429E28',
+    pumpId: 'PUMP001',
+    waterPrice: 0.001 // ETH per liter
 };
 
-const DKG_CONFIG = {
-    network: 'otp:20430',
-    endpoint: 'https://dkg.origintrail.io'
-};
+export default FLOWAGENT_CONFIG;

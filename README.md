@@ -1,53 +1,58 @@
-# FlowAgent: AI-Powered Water Access System
+# FlowAgent: NullShot Framework Water Distribution Agent
 
 **"AI Agent → MCP → Blockchain → Physical Water Pump"**
 
-## 🌊 Overview
-FlowAgent is an AI agent that manages decentralized water access using Model Context Protocol (MCP) and blockchain automation. The system enables autonomous water distribution through SMS payments, Web3 transactions, and IoT hardware control.
+🏆 **NullShot Hacks Season 0 - Track 1a Submission**
 
-## 🤖 AI Agent Architecture
-- **MCP Server**: Model Context Protocol for agent communication
-- **Water Management Agent**: Autonomous decision-making for water distribution
-- **Blockchain Integration**: Multi-chain payment processing
-- **IoT Control**: ESP32-based pump automation
+## 🌊 Overview
+FlowAgent is a decentralized, AI-assisted water distribution infrastructure using the **NullShot Framework** for rural communities with limited connectivity. It transforms crypto payments into real-world water access via autonomous AI agents.
+
+## 🤖 NullShot Framework Integration
+- **Agent Framework**: Built on `@nullshot/typescript-agent-framework`
+- **MCP Tools**: Uses `@nullshot/mcp-tools` for blockchain-IoT coordination
+- **Autonomous Operation**: AI agent monitors blockchain events and generates SMS commands for water pump activation
+- **Real-World Impact**: Physical water pumps activated by blockchain payments via autonomous AI agent
 
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Node.js 18+
-- Python 3.8+
-- ESP32 with SIM800L module
-- MetaMask wallet
+- Node.js 18+ with NullShot Framework
+- Python 3.8+ for MCP server
+- ESP32 LilyGO T-Call SIM800L
+- Base L2 wallet (MetaMask)
 
-### 1. Launch System
+### 1. Install NullShot Framework
 ```bash
-cd /home/josh/Kiro/FlowAgent
-./start.sh
+npm install @nullshot/typescript-agent-framework @nullshot/mcp-tools
 ```
 
-### 2. Access Interfaces
-- **Web Interface**: http://localhost:8002/flowagent_modern_ui.html
-- **MCP Server**: http://localhost:5003/mcp
-- **AI Bridge**: http://localhost:5002/status
+### 2. Launch FlowAgent System
+```bash
+cd /home/josh/Kiro/FlowAgent
+npm run start
+```
 
-## 🔧 MCP Integration
+### 3. Submit to NullShot Platform
+```bash
+npm run nullshot
+```
 
-FlowAgent implements Model Context Protocol for:
-- **Water verification tools**
-- **Payment processing agents**
-- **IoT device control**
-- **Cross-agent communication**
+## 🔧 Architecture
 
-## 🌍 Impact
-- Transparent water distribution in rural communities
-- Corruption-free payments via blockchain
-- AI-driven resource optimization
-- Scalable infrastructure for emerging markets
+**Blockchain Layer**: Base L2 processes water credit purchases
+**AI Agent Layer**: NullShot Framework agent monitors blockchain events and generates SMS commands  
+**MCP Layer**: Model Context Protocol coordinates blockchain-IoT communication
+**IoT Layer**: ESP32 receives SMS commands, activates physical pumps
 
-## 🏆 NullShot Hackathon Submission
-Built for NullShot Hacks Season 0 - showcasing AI agents with real-world utility in the agentic economy.
+## 🌍 Real-World Impact
+- **Rural Water Access**: Serves communities with only 2G connectivity
+- **Corruption-Free**: Blockchain transparency eliminates intermediaries
+- **NGO Deployment**: Scalable infrastructure for humanitarian organizations
+- **Disaster Relief**: Rapid water distribution in emergency situations
 
----
+## 🏆 NullShot Hacks Season 0
+**Track**: 1a - MCPs/Agents using NullShot Framework  
+**Prize**: $5,000 category  
+**Tags**: #NullshotHacksS0 #WaterAccess #RuralInfrastructure
 
-**Track**: MCPs/Agents using other frameworks
-**Category**: Real-world AI agent with blockchain integration
+Built to demonstrate the agentic economy solving real humanitarian problems through AI + blockchain convergence.

@@ -8,7 +8,7 @@ echo "==============================="
 
 # Kill any existing processes
 echo "🧹 Cleaning up existing processes..."
-pkill -f "majisafe_dkg_bridge.py" 2>/dev/null
+pkill -f "flowagent_ai.py" 2>/dev/null
 pkill -f "mcp_server.py" 2>/dev/null
 pkill -f "python3 -m http.server" 2>/dev/null
 sleep 2
@@ -23,7 +23,7 @@ cd ../..
 # Start AI Bridge in background
 echo "🤖 Starting AI Bridge..."
 cd src/ai-bridge
-python majisafe_dkg_bridge.py &
+python flowagent_ai.py &
 AI_PID=$!
 cd ../..
 
@@ -59,7 +59,7 @@ cleanup() {
     kill $MCP_PID 2>/dev/null
     kill $AI_PID 2>/dev/null
     kill $WEB_PID 2>/dev/null
-    pkill -f "majisafe_dkg_bridge.py" 2>/dev/null
+    pkill -f "flowagent_ai.py" 2>/dev/null
     pkill -f "mcp_server.py" 2>/dev/null
     pkill -f "python3 -m http.server" 2>/dev/null
     echo "✅ All services stopped"

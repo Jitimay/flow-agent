@@ -22,8 +22,8 @@ async def list_tools():
             }
         ),
         Tool(
-            name="create_water_asset",
-            description="Create Knowledge Asset for water dispensing",
+            name="create_water_record",
+            description="Create water dispensing record",
             inputSchema={
                 "type": "object", 
                 "properties": {
@@ -38,8 +38,8 @@ async def list_tools():
 async def call_tool(name: str, arguments: dict):
     if name == "verify_water_payment":
         return [TextContent(type="text", text=json.dumps({"verified": True}))]
-    elif name == "create_water_asset":
-        return [TextContent(type="text", text=json.dumps({"ual": f"did:dkg:otp:2043/{arguments['pump_data']['pump_id']}"}))]
+    elif name == "create_water_record":
+        return [TextContent(type="text", text=json.dumps({"record_id": f"water_{arguments['pump_data']['pump_id']}_{int(time.time())}"}))]
 
 if __name__ == "__main__":
     import asyncio

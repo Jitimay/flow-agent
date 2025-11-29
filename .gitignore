@@ -1,0 +1,10 @@
+nullshot-framework/
+node_modules/
+*.db
+*.log
+__pycache__/
+.env
+dist/
+build/
+.DS_Store
+*.pyc

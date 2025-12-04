@@ -1,5 +1,76 @@
-// FlowAgent - NullShot Framework Integration
+// FlowAgent - NullShot Framework Integration with Real MCP
 // Decentralized AI water distribution for rural Africa
+
+import { spawn } from 'child_process';
+import { WebSocket } from 'ws';
+
+// Real MCP Client for NullShot Framework
+class McpClient {
+    constructor() {
+        this.mcpProcess = null;
+        this.ws = null;
+        this.requestId = 0;
+    }
+
+    async connect() {
+        // Start MCP server process
+        this.mcpProcess = spawn('python3', ['src/ai-bridge/mcp_server.py'], {
+            stdio: ['pipe', 'pipe', 'pipe']
+        });
+
+        // Connect via stdio transport
+        this.mcpProcess.stdout.on('data', (data) => {
+            try {
+                const response = JSON.parse(data.toString());
+                this.handleMcpResponse(response);
+            } catch (e) {
+                console.log('MCP Output:', data.toString());
+            }
+        });
+
+        console.log('🔗 Connected to MCP server');
+    }
+
+    async callTool(name, args) {
+        const request = {
+            jsonrpc: '2.0',
+            id: ++this.requestId,
+            method: 'tools/call',
+            params: { name, arguments: args }
+        };
+
+        return new Promise((resolve, reject) => {
+            this.mcpProcess.stdin.write(JSON.stringify(request) + '\n');
+            
+            const timeout = setTimeout(() => {
+                reject(new Error('MCP tool call timeout'));
+            }, 5000);
+
+            this.pendingRequests = this.pendingRequests || new Map();
+            this.pendingRequests.set(request.id, { resolve, reject, timeout });
+        });
+    }
+
+    handleMcpResponse(response) {
+        if (this.pendingRequests && this.pendingRequests.has(response.id)) {
+            const { resolve, reject, timeout } = this.pendingRequests.get(response.id);
+            clearTimeout(timeout);
+            this.pendingRequests.delete(response.id);
+            
+            if (response.error) {
+                reject(new Error(response.error.message));
+            } else {
+                resolve(response.result);
+            }
+        }
+    }
+
+    async disconnect() {
+        if (this.mcpProcess) {
+            this.mcpProcess.kill();
+        }
+    }
+}
 
 class FlowAgent {
     constructor() {
@@ -10,6 +81,7 @@ class FlowAgent {
         
         this.pumpControllers = new Map();
         this.isRunning = false;
+        this.mcpClient = new McpClient();
     }
 
     async initialize() {
@@ -17,6 +89,10 @@ class FlowAgent {
         console.log('🌊 AI Agent for Rural Water Access');
         console.log('🏆 NullShot Hacks Season 0 - Track 1a Submission');
         console.log('💧 Monitoring blockchain for water purchases...');
+        
+        // Connect to real MCP server
+        await this.mcpClient.connect();
+        console.log('🔗 Real MCP client connected');
         
         this.isRunning = true;
         await this.startBlockchainMonitoring();
@@ -66,17 +142,20 @@ class FlowAgent {
         console.log(`   Pump: ${event.pumpId}`);
         console.log(`   Amount: ${event.amount} ETH`);
         
-        // Generate ultra-lightweight SMS command (1-5 bytes)
-        const command = this.generatePumpCommand(event);
-        
-        // Send SMS command to ESP32
-        const result = await this.sendSMSCommand(command);
-        
-        if (result.success) {
-            console.log(`📱 SMS sent successfully: ${command}`);
-            console.log(`🚰 Water pump activated for ${Math.floor(event.amount / 0.001)} liters`);
-        } else {
-            console.log(`❌ SMS failed: ${result.error}`);
+        try {
+            // Use real MCP tool for water pump activation
+            const duration = Math.floor(event.amount / 0.001);
+            const result = await this.mcpClient.callTool('activate_water_pump', {
+                pump_id: event.pumpId,
+                duration,
+                tx_hash: event.txHash
+            });
+            
+            console.log(`📱 Real MCP Tool Result:`, result);
+            console.log(`🚰 Water pump activated for ${duration} seconds`);
+            
+        } catch (error) {
+            console.log(`❌ MCP Tool failed:`, error.message);
         }
     }
 
@@ -113,6 +192,10 @@ class FlowAgent {
     async stop() {
         console.log('🛑 Stopping FlowAgent...');
         this.isRunning = false;
+        
+        // Disconnect MCP client
+        await this.mcpClient.disconnect();
+        console.log('🔗 Real MCP client disconnected');
     }
 }
 

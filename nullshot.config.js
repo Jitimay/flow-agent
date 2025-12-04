@@ -18,9 +18,8 @@ export default {
   mcp: {
     server: './src/ai-bridge/mcp_server.py',
     tools: [
-      'verify_water_payment',
-      'create_water_asset',
-      'generate_pump_command'
+      'activate_water_pump',
+      'check_sms_status'
     ]
   },
 

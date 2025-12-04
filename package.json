@@ -10,20 +10,32 @@
     "nullshot": "cd nullshot-framework && pnpm run cli brainstorm --tag 'Nullshot Hacks S0'"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "ethers": "^5.7.2",
     "express": "^4.18.0",
-    "cors": "^2.8.5",
-    "web3": "^4.0.0"
+    "web3": "^4.0.0",
+    "ws": "^8.18.3"
   },
   "devDependencies": {
     "hardhat": "^3.0.15"
   },
-  "keywords": ["nullshot-framework", "ai-agent", "water-access", "blockchain", "mcp", "rural-africa"],
+  "keywords": [
+    "nullshot-framework",
+    "ai-agent",
+    "water-access",
+    "blockchain",
+    "mcp",
+    "rural-africa"
+  ],
   "author": "FlowAgent Team - NullShot Hacks S0",
   "license": "MIT",
   "nullshot": {
     "framework": "typescript-agent-framework",
     "category": "infrastructure",
-    "tags": ["Nullshot Hacks S0", "water-access", "rural-infrastructure"]
+    "tags": [
+      "Nullshot Hacks S0",
+      "water-access",
+      "rural-infrastructure"
+    ]
   }
 }

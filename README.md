@@ -8,8 +8,8 @@
 FlowAgent is a decentralized, AI-assisted water distribution infrastructure using the **NullShot Framework** for rural communities with limited connectivity. It transforms crypto payments into real-world water access via autonomous AI agents.
 
 ## 🤖 NullShot Framework Integration
-- **Agent Framework**: Built on `@nullshot/typescript-agent-framework`
-- **MCP Tools**: Uses `@nullshot/mcp-tools` for blockchain-IoT coordination
+- **Agent Framework**: Built on NullShot TypeScript Agent Framework
+- **MCP Tools**: Custom MCP tools for blockchain-IoT coordination (`activate_water_pump`, `check_sms_status`)
 - **Autonomous Operation**: AI agent monitors blockchain events and generates SMS commands for water pump activation
 - **Real-World Impact**: Physical water pumps activated by blockchain payments via autonomous AI agent
 
@@ -23,7 +23,7 @@ FlowAgent is a decentralized, AI-assisted water distribution infrastructure usin
 
 ### 1. Install NullShot Framework
 ```bash
-npm install @nullshot/typescript-agent-framework @nullshot/mcp-tools
+npm install @nullshot/typescript-agent-framework
 ```
 
 ### 2. Launch FlowAgent System

@@ -120,6 +120,54 @@ void initWebServer() {
     server.send(200, "text/plain", "");
   });
   
+  // Endpoint for UI to activate pump
+  server.on("/activate-pump", HTTP_POST, []() {
+    server.sendHeader("Access-Control-Allow-Origin", "*");
+    server.sendHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+    server.sendHeader("Access-Control-Allow-Headers", "Content-Type");
+    
+    if (server.hasArg("plain")) {
+      DynamicJsonDocument doc(512);
+      deserializeJson(doc, server.arg("plain"));
+      
+      String pump_id = doc["pump_id"];
+      int liters = doc["liters"];
+      int duration = doc["duration"];
+      bool web3_confirmed = doc["web3_confirmed"];
+      
+      Serial.println("🌐 Web3 pump activation request:");
+      Serial.println("   Pump: " + pump_id);
+      Serial.println("   Liters: " + String(liters));
+      Serial.println("   Duration: " + String(duration) + "s");
+      
+      if (web3_confirmed && pump_id == pumpId) {
+        activatePump(duration);
+        
+        DynamicJsonDocument response(256);
+        response["success"] = true;
+        response["message"] = "Pump activated for " + String(liters) + "L";
+        response["duration"] = duration;
+        
+        String responseStr;
+        serializeJson(response, responseStr);
+        server.send(200, "application/json", responseStr);
+      } else {
+        server.send(400, "application/json", "{\"error\":\"Invalid pump request\"}");
+      }
+    } else {
+      server.send(400, "application/json", "{\"error\":\"No data received\"}");
+    }
+  });
+  
+  // Handle CORS preflight for activate-pump
+  server.on("/activate-pump", HTTP_OPTIONS, []() {
+    server.sendHeader("Access-Control-Allow-Origin", "*");
+    server.sendHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+    server.sendHeader("Access-Control-Allow-Headers", "Content-Type");
+    server.send(200, "text/plain", "");
+  });
+  });
+  
   // Endpoint for Web3 payment confirmation
   server.on("/confirm-web3", HTTP_POST, []() {
     if (server.hasArg("tx_hash") && server.hasArg("event_id")) {

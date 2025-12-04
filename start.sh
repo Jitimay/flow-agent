@@ -10,21 +10,36 @@ echo "==============================="
 echo "🧹 Cleaning up existing processes..."
 pkill -f "flowagent_ai.py" 2>/dev/null
 pkill -f "mcp_server.py" 2>/dev/null
+pkill -f "mcp_api.js" 2>/dev/null
 pkill -f "python3 -m http.server" 2>/dev/null
 sleep 2
 
 # Start MCP Server
 echo "🔗 Starting MCP Server..."
 cd src/ai-bridge
-python mcp_server.py &
+source ../../venv/bin/activate && python3 mcp_server.py &
 MCP_PID=$!
+cd ../..
+
+# Start MCP API Server
+echo "🔧 Starting MCP API Server..."
+cd src/web
+node mcp_api.js &
+MCP_API_PID=$!
 cd ../..
 
 # Start AI Bridge in background
 echo "🤖 Starting AI Bridge..."
 cd src/ai-bridge
-python flowagent_ai.py &
+source ../../venv/bin/activate && python3 flowagent_ai.py &
 AI_PID=$!
+cd ../..
+
+# Start MCP Tools Interface
+echo "🔧 Starting MCP Tools Interface..."
+cd src/web
+node mcp_api.js &
+MCP_API_PID=$!
 cd ../..
 
 # Wait for services to start
@@ -33,7 +48,7 @@ sleep 3
 # Start Web Server in background
 echo "🌐 Starting Web Interface..."
 cd src/web
-python3 -m http.server 8002 &
+python3 -m http.server 8003 &
 WEB_PID=$!
 cd ../..
 
@@ -45,8 +60,9 @@ echo "🎉 FlowAgent System Started!"
 echo "=========================="
 echo "🤖 AI Agent:       http://localhost:5002"
 echo "🔗 MCP Server:     http://localhost:5003"
-echo "🌐 Web Interface:  http://localhost:8002"
-echo "📊 Dashboard:      http://localhost:8002/flowagent_modern_ui.html"
+echo "🔧 MCP Interface:  http://localhost:8004/mcp_interface.html"
+echo "🌐 Web Interface:  http://localhost:8003"
+echo "📊 Dashboard:      http://localhost:8003/flowagent_modern_ui.html"
 echo ""
 echo "🏆 NullShot Hackathon - AI Agent for Water Access"
 echo ""
@@ -58,9 +74,11 @@ cleanup() {
     echo "🛑 Stopping FlowAgent services..."
     kill $MCP_PID 2>/dev/null
     kill $AI_PID 2>/dev/null
+    kill $MCP_API_PID 2>/dev/null
     kill $WEB_PID 2>/dev/null
     pkill -f "flowagent_ai.py" 2>/dev/null
     pkill -f "mcp_server.py" 2>/dev/null
+    pkill -f "mcp_api.js" 2>/dev/null
     pkill -f "python3 -m http.server" 2>/dev/null
     echo "✅ All services stopped"
     exit 0

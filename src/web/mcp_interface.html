@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlowAgent MCP Tools Interface</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .tool { border: 1px solid #ddd; margin: 20px 0; padding: 20px; border-radius: 8px; }
+        .tool h3 { margin-top: 0; color: #14b8a6; }
+        input, button { padding: 8px; margin: 5px; border: 1px solid #ddd; border-radius: 4px; }
+        button { background: #14b8a6; color: white; cursor: pointer; }
+        button:hover { background: #0d9488; }
+        .result { background: #f0f9ff; padding: 10px; margin: 10px 0; border-radius: 4px; }
+        .error { background: #fef2f2; color: #dc2626; }
+    </style>
+</head>
+<body>
+    <h1>🤖 FlowAgent MCP Tools Interface</h1>
+    <p>Direct interface to Model Context Protocol tools for water management</p>
+
+    <div class="tool">
+        <h3>🚰 Activate Water Pump</h3>
+        <input type="text" id="pumpId" placeholder="Pump ID (e.g., PUMP001)" value="PUMP001">
+        <input type="number" id="duration" placeholder="Duration (seconds)" value="10">
+        <input type="text" id="txHash" placeholder="Transaction Hash" value="0x123abc">
+        <button onclick="activatePump()">Activate Pump</button>
+        <div id="pumpResult" class="result" style="display:none;"></div>
+    </div>
+
+    <div class="tool">
+        <h3>📱 Check SMS Status</h3>
+        <input type="text" id="esp32Ip" placeholder="ESP32 IP Address" value="192.168.1.100">
+        <button onclick="checkSms()">Check Status</button>
+        <div id="smsResult" class="result" style="display:none;"></div>
+    </div>
+
+    <script>
+        async function callMcpTool(toolName, params) {
+            try {
+                const response = await fetch(`http://localhost:8004/mcp-call`, {
+                    method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({ tool: toolName, params })
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                return await response.json();
+            } catch (error) {
+                console.error('MCP Call Error:', error);
+                return { error: error.message };
+            }
+        }
+
+        async function activatePump() {
+            const params = {
+                pump_id: document.getElementById('pumpId').value,
+                duration: parseInt(document.getElementById('duration').value),
+                tx_hash: document.getElementById('txHash').value
+            };
+            
+            const result = await callMcpTool('activate_water_pump', params);
+            const resultDiv = document.getElementById('pumpResult');
+            resultDiv.style.display = 'block';
+            resultDiv.className = result.error ? 'result error' : 'result';
+            resultDiv.innerHTML = `<pre>${JSON.stringify(result, null, 2)}</pre>`;
+        }
+
+        async function checkSms() {
+            const params = {
+                esp32_ip: document.getElementById('esp32Ip').value
+            };
+            
+            const result = await callMcpTool('check_sms_status', params);
+            const resultDiv = document.getElementById('smsResult');
+            resultDiv.style.display = 'block';
+            resultDiv.className = result.error ? 'result error' : 'result';
+            resultDiv.innerHTML = `<pre>${JSON.stringify(result, null, 2)}</pre>`;
+        }
+    </script>
+</body>
+</html>

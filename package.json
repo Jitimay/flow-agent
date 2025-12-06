@@ -2,19 +2,23 @@
   "name": "flowagent-nullshot",
   "version": "1.0.0",
   "description": "Decentralized AI water distribution for rural Africa - NullShot Framework",
-  "main": "src/ai-bridge/nullshot_agent.js",
+  "main": "src/ai-bridge/nullshot_agent_real.js",
   "type": "module",
   "scripts": {
     "start": "./start.sh",
-    "agent": "node src/ai-bridge/nullshot_agent.js",
+    "agent": "node src/ai-bridge/nullshot_agent_real.js",
+    "demo": "node demo_nullshot.js",
     "nullshot": "cd nullshot-framework && pnpm run cli brainstorm --tag 'Nullshot Hacks S0'"
   },
   "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.9.0",
+    "@xava-labs/mcp": "0.1.1",
     "cors": "^2.8.5",
     "ethers": "^5.7.2",
     "express": "^4.18.0",
     "web3": "^4.0.0",
-    "ws": "^8.18.3"
+    "ws": "^8.18.3",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "hardhat": "^3.0.15"

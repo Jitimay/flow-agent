@@ -5,8 +5,8 @@ export default {
   tags: ['Nullshot Hacks S0', 'water-access', 'rural-infrastructure', 'blockchain-iot'],
   
   agent: {
-    framework: '@nullshot/typescript-agent-framework',
-    entry: './src/ai-bridge/nullshot_agent.js',
+    framework: '@modelcontextprotocol/sdk + @xava-labs/mcp',
+    entry: './src/ai-bridge/nullshot_agent_real.js',
     capabilities: [
       'blockchain-event-monitoring',
       'iot-device-control', 
@@ -16,7 +16,7 @@ export default {
   },
 
   mcp: {
-    server: './src/ai-bridge/mcp_server.py',
+    server: './src/ai-bridge/nullshot_mcp_server.ts',
     tools: [
       'activate_water_pump',
       'check_sms_status'

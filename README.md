@@ -21,14 +21,14 @@ FlowAgent is a decentralized, AI-assisted water distribution infrastructure usin
 - ESP32 LilyGO T-Call SIM800L
 - Base L2 wallet (MetaMask)
 
-### 1. Install NullShot Framework
+### 1. Demo NullShot Integration
 ```bash
-npm install @nullshot/typescript-agent-framework
+cd /home/josh/Kiro/FlowAgent
+node demo_nullshot.js
 ```
 
 ### 2. Launch FlowAgent System
 ```bash
-cd /home/josh/Kiro/FlowAgent
 npm run start
 ```
 

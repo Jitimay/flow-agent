@@ -15,9 +15,9 @@ pkill -f "python3 -m http.server" 2>/dev/null
 sleep 2
 
 # Start MCP Server
-echo "🔗 Starting MCP Server..."
+echo "🔗 Starting NullShot MCP Server..."
 cd src/ai-bridge
-source ../../venv/bin/activate && python3 mcp_server.py &
+source ../../venv/bin/activate && python3 mcp_server_simple.py &
 MCP_PID=$!
 cd ../..
 
@@ -28,12 +28,10 @@ node mcp_api.js &
 MCP_API_PID=$!
 cd ../..
 
-# Start AI Bridge in background
-echo "🤖 Starting AI Bridge..."
-cd src/ai-bridge
-source ../../venv/bin/activate && python3 flowagent_ai.py &
-AI_PID=$!
-cd ../..
+# Start NullShot Agent
+echo "🤖 Starting NullShot FlowAgent..."
+node src/ai-bridge/nullshot_agent.js &
+AGENT_PID=$!
 
 # Start MCP Tools Interface
 echo "🔧 Starting MCP Tools Interface..."
@@ -73,10 +71,10 @@ cleanup() {
     echo ""
     echo "🛑 Stopping FlowAgent services..."
     kill $MCP_PID 2>/dev/null
-    kill $AI_PID 2>/dev/null
+    kill $AGENT_PID 2>/dev/null
     kill $MCP_API_PID 2>/dev/null
     kill $WEB_PID 2>/dev/null
-    pkill -f "flowagent_ai.py" 2>/dev/null
+    pkill -f "nullshot_agent.js" 2>/dev/null
     pkill -f "mcp_server.py" 2>/dev/null
     pkill -f "mcp_api.js" 2>/dev/null
     pkill -f "python3 -m http.server" 2>/dev/null
